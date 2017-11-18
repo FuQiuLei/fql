@@ -12,8 +12,8 @@ import java.awt.event.KeyListener;
 public class MainUI {
 	public static JFrame jFrame = new JFrame();
 	public static JPanel jPanel = new JPanel();
-	public static int frameWidth = 1800;
-	public static int frameHeight = 800;
+	public static int frameWidth = 1000;
+	public static int frameHeight = 600;
 	public static int dibianHeight = frameHeight - 100;
 	public static LvBu lvBu;
 
