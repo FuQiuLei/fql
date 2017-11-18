@@ -3,6 +3,7 @@ package com.fql.ui;
 import javax.swing.*;
 
 import com.fql.config.Config;
+import com.fql.person.Axiu;
 import com.fql.person.LvBu;
 
 import java.awt.*;
@@ -16,6 +17,7 @@ public class MainUI {
 	public static int frameHeight = 600;
 	public static int dibianHeight = frameHeight - 100;
 	public static LvBu lvBu;
+	public static Axiu axiu;
 
 	public static void paintUI() {
 		jFrame.setBounds(100, 100, frameWidth, frameHeight);
@@ -37,12 +39,14 @@ public class MainUI {
 
 		addPerson();
 
-		addKeyEvent();
+		/*addKeyEvent();*/
+		addKeyEventForAxiu();
 		jPanel.updateUI();
 	}
 
 	public static void addPerson() {
 		LvBu lvBu = new LvBu(jPanel);
+		Axiu axiu = new Axiu(jPanel);
 	}
 
 	public static void addKeyEvent() {
@@ -71,6 +75,35 @@ public class MainUI {
 					lvBu.jump(lvBu);
 				}
 				jPanel.updateUI();
+			}
+		});
+	}
+	public static void addKeyEventForAxiu(){
+		jFrame.addKeyListener(new KeyListener() {
+			
+			public void keyTyped(KeyEvent e) {
+			}
+			
+			public void keyReleased(KeyEvent e) {
+				if (axiu.getState() == 1) {
+					if (axiu.getDirection() == 1) {
+						axiu.getjLabel().setIcon(new ImageIcon(Config.imagePath + "axiu/axiu0002.gif"));
+					} else if (axiu.getDirection() == 0) {
+						axiu.getjLabel().setIcon(new ImageIcon(Config.imagePath + "axiu/axiu0002.gif"));
+					}
+					axiu.setState(0);
+				}
+				jPanel.updateUI();
+				
+			}
+			
+			public void keyPressed(KeyEvent e) {
+				System.out.println(e.getKeyCode());
+				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+					axiu.walkRight(axiu);
+				} 
+				jPanel.updateUI();
+				
 			}
 		});
 	}

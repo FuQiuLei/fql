@@ -1,8 +1,5 @@
 package com.fql.main;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import com.fql.config.Config;
 import com.fql.ui.MainUI;
 

@@ -19,7 +19,7 @@ public class LvBu {
 	private int piancha=35;
 	private int state=0;     // 0=Õ¾Á¢      ; 1=×ß¶¯   ;2=ÌøÔ¾
 	private int direction=0; // 0=right; 1=left;
-	private String imageName="0004.gif";
+	private String imageName="0006.gif";
 	
 	private JLabel jLabel=new JLabel();
 	
@@ -27,7 +27,7 @@ public class LvBu {
 	public LvBu(JPanel jPanel){
 		jPanel.add(this.jLabel);
 		jLabel.setIcon(new ImageIcon(Config.imagePath+this.imageName));
-		jLabel.setBounds(50, MainUI.dibianHeight-height+piancha, width, height);
+		jLabel.setBounds(700, MainUI.dibianHeight-height+piancha, width, height);
 		jLabel.setVisible(true);
 		MainUI.lvBu=this;
 	}

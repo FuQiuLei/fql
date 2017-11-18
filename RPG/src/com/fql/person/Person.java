@@ -1,5 +1,5 @@
 package com.fql.person;
 
-public class Person {
-
+public abstract class Person {
+	
 }
