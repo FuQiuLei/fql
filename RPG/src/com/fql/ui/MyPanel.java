@@ -37,7 +37,7 @@ public class MyPanel extends JPanel {
 						for(int i=0;i<MyFrame.list.size();i++){
 							MyFrame.list.get(i).update();
 						}
-						Thread.currentThread().sleep(100);
+						Thread.currentThread().sleep(80);
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -61,7 +61,7 @@ public class MyPanel extends JPanel {
 						g2.drawImage(image, 0, 0,MyPanel.myPanel);
 						for(int i=0;i<MyFrame.list.size();i++){
 							BufferedImage hero=MyFrame.list.get(i).image;
-							g2.drawImage(hero, MyFrame.list.get(i).x, MyFrame.list.get(i).y,MyPanel.myPanel);
+							g2.drawImage(hero, MyFrame.list.get(i).imageX, MyFrame.list.get(i).imageY,MyPanel.myPanel);
 						}
 						g.drawImage(currentBackgroundImage, 0, 0,MyPanel.myPanel);
 						MyPanel.myPanel.updateUI();
