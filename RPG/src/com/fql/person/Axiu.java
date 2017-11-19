@@ -18,7 +18,7 @@ public class Axiu {
 	
 	public Axiu(){
 		try {
-			this.image=ImageIO.read(new File(this.imagePath+(String)(this.walk[6][0])));
+			this.image=ImageIO.read(new File(this.imagePath+(String)(this.walkRight[6][0])));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -31,25 +31,25 @@ public class Axiu {
 			currentImage=0;
 		}
 		try {
-			this.image=ImageIO.read(new File(this.imagePath+(String)(this.walk[currentImage][0])));
+			this.image=ImageIO.read(new File(this.imagePath+(String)(this.walkRight[currentImage][0])));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public Object[][] walk={
-			new Object[]{"0001.png",25,58},
-			new Object[]{"0002.png",25,58},
-			new Object[]{"0003.png",25,58},
-			new Object[]{"0004.png",25,58},
-			new Object[]{"0005.png",25,58},
-			new Object[]{"0006.png",25,58},
-			new Object[]{"0007.png",25,58},
-			new Object[]{"0008.png",25,58},
-			new Object[]{"0009.png",25,58},
-			new Object[]{"0010.png",25,58},
-			new Object[]{"0011.png",25,58},
-			new Object[]{"0012.png",25,58}
+	public Object[][] walkRight={
+			new Object[]{"walkRight/0001.png",25,58},
+			new Object[]{"walkRight/0002.png",25,58},
+			new Object[]{"walkRight/0003.png",25,58},
+			new Object[]{"walkRight/0004.png",25,58},
+			new Object[]{"walkRight/0005.png",25,58},
+			new Object[]{"walkRight/0006.png",25,58},
+			new Object[]{"walkRight/0007.png",25,58},
+			new Object[]{"walkRight/0008.png",25,58},
+			new Object[]{"walkRight/0009.png",25,58},
+			new Object[]{"walkRight/0010.png",25,58},
+			new Object[]{"walkRight/0011.png",25,58},
+			new Object[]{"walkRight/0012.png",25,58}
 	};
 
 }
