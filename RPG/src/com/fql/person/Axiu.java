@@ -38,18 +38,18 @@ public class Axiu {
 	}
 	
 	public Object[][] walk={
-			new Object[]{"0001.bmp",25,58},
-			new Object[]{"0002.bmp",25,58},
-			new Object[]{"0003.bmp",25,58},
-			new Object[]{"0004.bmp",25,58},
-			new Object[]{"0005.bmp",25,58},
-			new Object[]{"0006.bmp",25,58},
-			new Object[]{"0007.bmp",25,58},
-			new Object[]{"0008.bmp",25,58},
-			new Object[]{"0009.bmp",25,58},
-			new Object[]{"0010.bmp",25,58},
-			new Object[]{"0011.bmp",25,58},
-			new Object[]{"0012.bmp",25,58}
+			new Object[]{"0001.png",25,58},
+			new Object[]{"0002.png",25,58},
+			new Object[]{"0003.png",25,58},
+			new Object[]{"0004.png",25,58},
+			new Object[]{"0005.png",25,58},
+			new Object[]{"0006.png",25,58},
+			new Object[]{"0007.png",25,58},
+			new Object[]{"0008.png",25,58},
+			new Object[]{"0009.png",25,58},
+			new Object[]{"0010.png",25,58},
+			new Object[]{"0011.png",25,58},
+			new Object[]{"0012.png",25,58}
 	};
 
 }
