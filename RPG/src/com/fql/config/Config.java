@@ -5,7 +5,7 @@ import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import com.fql.person.Axiu;
+import com.fql.hero.Axiu;
 import com.fql.ui.MyPanel;
 
 public class Config {

@@ -3,18 +3,23 @@ package com.fql.ui;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
 
-import com.fql.person.Axiu;
+import com.fql.client.Client;
+import com.fql.hero.Axiu;
 
 public class MyFrame extends JFrame{
 	
 	public static List<Axiu> list=new ArrayList<>();
 	public static Axiu axiu=new Axiu();;
 	public static MyPanel myPanel=new MyPanel();
+	public static DatagramPacket pocket=new DatagramPacket(new byte[50], 50);
 	public MyFrame(){
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,32 +30,36 @@ public class MyFrame extends JFrame{
 		list.add(axiu);
 		this.add(myPanel);
 		myPanel.paint(getGraphics());
-		myPanel.updateHero();
+		Client client=new Client();
 		addKeyListener(new KeyListener() {
-			
 			@Override
-			public void keyTyped(KeyEvent e) {
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e) {
-				axiu.state=0;
-				Axiu.totalImage=10;
-				myPanel.updateHero();
+			public void keyReleased(KeyEvent e) {   
+				if(e.getKeyCode()==KeyEvent.VK_RIGHT){
+					pocket.setData(("1/127.0.0.1/8888/"+KeyEvent.VK_RIGHT+"/keyReleased").getBytes());
+					pocket.setSocketAddress(new InetSocketAddress("127.0.0.1", 9999));
+					try {
+						Client.client.send(pocket);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+				}
 			}
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-					axiu.state=1;
-					axiu.direction=0;
+				if(e.getKeyCode()==KeyEvent.VK_RIGHT){
+					pocket.setData(("1/127.0.0.1/8888/"+KeyEvent.VK_RIGHT+"/keyPressed").getBytes());
+					pocket.setSocketAddress(new InetSocketAddress("127.0.0.1", 9999));
+					try {
+						Client.client.send(pocket);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
 				}
-				axiu.x+=2	;
-				if(axiu.state==1){
-					axiu.imageX=axiu.x-(int)axiu.walkRight[axiu.currentImage][1];
-					axiu.imageY=axiu.y-(int)axiu.walkRight[axiu.currentImage][2];
-				}
-				myPanel.updateHero();
+			}
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
 			}
 		});
 	}

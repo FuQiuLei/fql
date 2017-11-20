@@ -12,6 +12,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import com.fql.config.Config;
+import com.fql.hero.Axiu;
 
 public class MyPanel extends JPanel {
 
@@ -28,23 +29,6 @@ public class MyPanel extends JPanel {
 		currentBackgroundImage=new BufferedImage(1000,390,BufferedImage.TYPE_INT_RGB);
 		g2=currentBackgroundImage.createGraphics();
 	}
-
-	public void updateHero(){
-		Config.updateHero.execute(new Runnable(){
-			public void run() {
-				while(true){
-					try {
-						for(int i=0;i<MyFrame.list.size();i++){
-							MyFrame.list.get(i).update();
-						}
-						Thread.currentThread().sleep(80);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		});
-	}
 	
 	@Override
 	public void paint(final Graphics g) {
@@ -52,6 +36,7 @@ public class MyPanel extends JPanel {
 			public void run() {
 				while(true){
 					try {
+						//»æÖÆ±³¾°Í¼Æ¬
 						BufferedImage image=ImageIO.read(new File(backgroundImagePath+(String)background[currentBackground][0]));
 						if(MyPanel.currentBackground<7){
 							MyPanel.currentBackground++;
@@ -59,6 +44,7 @@ public class MyPanel extends JPanel {
 							MyPanel.currentBackground=0;
 						}
 						g2.drawImage(image, 0, 0,MyPanel.myPanel);
+						//»æÖÆÓ¢ÐÛÍ¼Æ¬
 						for(int i=0;i<MyFrame.list.size();i++){
 							BufferedImage hero=MyFrame.list.get(i).image;
 							g2.drawImage(hero, MyFrame.list.get(i).imageX, MyFrame.list.get(i).imageY,MyPanel.myPanel);
