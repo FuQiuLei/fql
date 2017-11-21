@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.Iterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -13,6 +14,7 @@ import javax.swing.JPanel;
 
 import com.fql.config.Config;
 import com.fql.hero.Axiu;
+import com.fql.person.BaShen;
 
 public class MyPanel extends JPanel {
 
@@ -45,9 +47,19 @@ public class MyPanel extends JPanel {
 						}
 						g2.drawImage(image, 0, 0,MyPanel.myPanel);
 						//ªÊ÷∆”¢–€Õº∆¨
-						for(int i=0;i<MyFrame.list.size();i++){
-							BufferedImage hero=MyFrame.list.get(i).image;
-							g2.drawImage(hero, MyFrame.list.get(i).imageX, MyFrame.list.get(i).imageY,MyPanel.myPanel);
+						Iterator<Integer> iterator=MyFrame.heros.keySet().iterator();
+						while(iterator.hasNext()){
+							int heroId=iterator.next().intValue();
+							switch(heroId){
+							case 1:{
+								BufferedImage hero=Axiu.image;
+								g2.drawImage(hero, Axiu.imageX, Axiu.imageY,MyPanel.myPanel);
+							}
+							case 2:{
+								BufferedImage hero=BaShen.image;
+								g2.drawImage(hero, BaShen.imageX, BaShen.imageY,MyPanel.myPanel);
+							}
+							}
 						}
 						g.drawImage(currentBackgroundImage, 0, 0,MyPanel.myPanel);
 						MyPanel.myPanel.updateUI();

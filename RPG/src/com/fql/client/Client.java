@@ -8,14 +8,18 @@ import java.util.concurrent.Executors;
 
 import javax.imageio.ImageIO;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.fql.constant.Constant;
 import com.fql.hero.Axiu;
+import com.fql.person.BaShen;
 
 public class Client {
 	
 	public static ExecutorService receiveData;
 	public static DatagramSocket client;
 	public static DatagramPacket packet;
+	public static int heroId;
 	public static String clientIp;
 	public static int clientPort;
 	public static String serverIp;
@@ -41,19 +45,35 @@ public class Client {
 							client.receive(packet);
 							byte[] b=packet.getData();
 							String context=new String(b,0,packet.getLength());
-							String[] result=context.split("/");
-							switch (result[0]){
-								case "1":{
-									if(result[1].equals(Constant.STAND+"")){
-										Axiu.image=ImageIO.read(new File(Axiu.imagePath+(String)Axiu.stand[Integer.valueOf(result[2]).intValue()][0]));
-										Axiu.imageX=Integer.valueOf(result[3]).intValue();
-										Axiu.imageY=Integer.valueOf(result[4]).intValue();
-									}else if(result[1].equals(Constant.WALK+"")){
-										Axiu.image=ImageIO.read(new File(Axiu.imagePath+(String)Axiu.walkRight[Integer.valueOf(result[2]).intValue()][0]));
-										Axiu.imageX=Integer.valueOf(result[3]).intValue();
-										Axiu.imageY=Integer.valueOf(result[4]).intValue();
+							JSONArray array=JSONArray.parseArray(context);
+							for(int i=0;i<array.size();i++){
+								JSONObject object=(JSONObject)array.get(i);
+								switch (object.getIntValue("heroId")){
+								case 1:{
+									if(object.getString("state").equals(Constant.STAND+"")){
+										Axiu.image=ImageIO.read(new File(Axiu.imagePath+(String)Axiu.stand[object.getIntValue("currentImage")][0]));
+										Axiu.imageX=object.getIntValue("imageX");
+										Axiu.imageY=object.getIntValue("imageY");
+									}else if(object.getString("state").equals(Constant.WALK+"")){
+										Axiu.image=ImageIO.read(new File(Axiu.imagePath+(String)Axiu.walkRight[object.getIntValue("currentImage")][0]));
+										Axiu.imageX=object.getIntValue("imageX");
+										Axiu.imageY=object.getIntValue("imageY");
 									}
+									continue;
 								}
+								case 2:{
+									if(object.getString("state").equals(Constant.STAND+"")){
+										BaShen.image=ImageIO.read(new File(BaShen.imagePath+(String)BaShen.stand[object.getIntValue("currentImage")][0]));
+										BaShen.imageX=object.getIntValue("imageX");
+										BaShen.imageY=object.getIntValue("imageY");
+									}else if(object.getString("state").equals(Constant.WALK+"")){
+										BaShen.image=ImageIO.read(new File(BaShen.imagePath+(String)BaShen.walkRight[object.getIntValue("currentImage")][0]));
+										BaShen.imageX=object.getIntValue("imageX");
+										BaShen.imageY=object.getIntValue("imageY");
+									}
+									continue;
+								}
+							}
 							}
 						}catch(Exception e){
 							e.printStackTrace();
