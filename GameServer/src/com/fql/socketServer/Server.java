@@ -14,16 +14,19 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.fql.constant.Constant;
 import com.fql.hero.Axiu;
+import com.fql.hero.BaShen;
 
 public class Server {
 
 	public static ExecutorService sendData = Executors.newSingleThreadExecutor();
 	public static ExecutorService receiveData = Executors.newSingleThreadExecutor();
 	public static DatagramSocket server;
-	public static final DatagramPacket packet = new DatagramPacket(new byte[50], 50);
-	public static final DatagramPacket receivepacket = new DatagramPacket(new byte[50], 50);
+	public static final DatagramPacket packet = new DatagramPacket(new byte[1024], 1024);
+	public static final DatagramPacket receivepacket = new DatagramPacket(new byte[1024], 1024);
 	public static Map<Integer, Object> heros = new HashMap();
 	public static Set<Integer> herosId;
 	public static Iterator<Integer> iterator;
@@ -32,8 +35,8 @@ public class Server {
 	public Server() {
 		try {
 			server = new DatagramSocket(9999);
-			clients.add(new Object[]{"127.0.0.1",8888});
-			clients.add(new Object[]{"127.0.0.1",8889});
+			clients.add(new Object[]{"192.168.1.107",8888});
+			clients.add(new Object[]{"192.168.1.107",8889});
 			ExecutorService sendData = Executors.newSingleThreadExecutor();
 			sendData.execute(new Runnable() {
 				public void run() {
@@ -41,19 +44,36 @@ public class Server {
 						try {
 							herosId = heros.keySet();
 							iterator = herosId.iterator();
+							JSONArray array=new JSONArray();
 							while (iterator.hasNext()) {
 								int heroId = iterator.next().intValue();
 								switch (heroId) {
 								case 1: {
-									String context = Axiu.heroId + "/" + Axiu.state + "/" + Axiu.currentImage + "/"
-											+ Axiu.imageX + "/" + Axiu.imageY;
-									packet.setData(context.toString().getBytes());
-									for(Object[] object:clients){
-										packet.setSocketAddress(new InetSocketAddress((String)object[0], (int)object[1]));
-										server.send(packet);
-									}
+									JSONObject object=new JSONObject();
+									object.put("heroId", Axiu.heroId);
+									object.put("state", Axiu.state);
+									object.put("currentImage", Axiu.currentImage);
+									object.put("imageX", Axiu.imageX);
+									object.put("imageY", Axiu.imageY);
+									array.add(object);
+									continue;
+								}
+								case 2: {
+									JSONObject object=new JSONObject();
+									object.put("heroId", BaShen.heroId);
+									object.put("state", BaShen.state);
+									object.put("currentImage", BaShen.currentImage);
+									object.put("imageX", BaShen.imageX);
+									object.put("imageY", BaShen.imageY);
+									array.add(object);
+									continue;
 								}
 								}
+							}
+							packet.setData(array.toJSONString().getBytes());
+							for(Object[] object:clients){
+								packet.setSocketAddress(new InetSocketAddress((String)object[0], (int)object[1]));
+								server.send(packet);
 							}
 							Thread.currentThread().sleep(50);
 						} catch (Exception e) {
