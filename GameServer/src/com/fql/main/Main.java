@@ -62,7 +62,7 @@ public class Main {
 									}else{
 										BaShen.currentImage++;
 									}
-									BaShen.x+=3;
+									BaShen.x-=3;
 									BaShen.imageX = BaShen.x - (int) BaShen.walkRight[BaShen.currentImage][1];
 									BaShen.imageY = BaShen.y - (int) BaShen.walkRight[BaShen.currentImage][2];
 								}

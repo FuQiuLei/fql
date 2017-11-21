@@ -35,8 +35,8 @@ public class Server {
 	public Server() {
 		try {
 			server = new DatagramSocket(9999);
+			clients.add(new Object[]{"192.168.1.104",8888});
 			clients.add(new Object[]{"192.168.1.107",8888});
-			clients.add(new Object[]{"192.168.1.107",8889});
 			ExecutorService sendData = Executors.newSingleThreadExecutor();
 			sendData.execute(new Runnable() {
 				public void run() {
@@ -115,6 +115,30 @@ public class Server {
 										}
 									}
 								}
+								continue;
+							}
+							case 2:{
+								BaShen baShen=(BaShen)Server.heros.get(herosId);
+								int keyCode=Integer.valueOf(result[3]).intValue();
+								if(result[4].equals("keyPressed")){
+									if(keyCode==KeyEvent.VK_RIGHT){
+										if(baShen.state==Constant.STAND){
+											baShen.state=Constant.WALK;
+											baShen.currentImage=0;
+										}
+										if(baShen.state==Constant.STAND || baShen.state==Constant.WALK){
+											baShen.direction=Constant.RIGHT;
+										}
+									}
+								}else{
+									if(keyCode==KeyEvent.VK_RIGHT){
+										if(baShen.state==Constant.WALK){
+											baShen.state=Constant.STAND;
+											baShen.currentImage=0;
+										}
+									}
+								}
+								continue;
 							}
 							}
 						} catch (Exception e) {
