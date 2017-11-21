@@ -36,7 +36,7 @@ public class MyFrame extends JFrame{
 			public void keyReleased(KeyEvent e) {   
 				if(e.getKeyCode()==KeyEvent.VK_RIGHT){
 					pocket.setData(("1/127.0.0.1/8888/"+KeyEvent.VK_RIGHT+"/keyReleased").getBytes());
-					pocket.setSocketAddress(new InetSocketAddress("127.0.0.1", 9999));
+					pocket.setSocketAddress(new InetSocketAddress(Client.serverIp, Client.serverPort));
 					try {
 						Client.client.send(pocket);
 					} catch (Exception e1) {
@@ -48,8 +48,8 @@ public class MyFrame extends JFrame{
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_RIGHT){
-					pocket.setData(("1/127.0.0.1/8888/"+KeyEvent.VK_RIGHT+"/keyPressed").getBytes());
-					pocket.setSocketAddress(new InetSocketAddress("127.0.0.1", 9999));
+					pocket.setData(("1/"+Client.clientIp+"/"+Client.clientPort+"/"+KeyEvent.VK_RIGHT+"/keyPressed").getBytes());
+					pocket.setSocketAddress(new InetSocketAddress(Client.serverIp, Client.serverPort));
 					try {
 						Client.client.send(pocket);
 					} catch (Exception e1) {

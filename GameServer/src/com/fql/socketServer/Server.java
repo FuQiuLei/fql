@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetSocketAddress;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
@@ -25,10 +27,13 @@ public class Server {
 	public static Map<Integer, Object> heros = new HashMap();
 	public static Set<Integer> herosId;
 	public static Iterator<Integer> iterator;
+	public static List<Object[]> clients=new ArrayList<>();
 
 	public Server() {
 		try {
 			server = new DatagramSocket(9999);
+			clients.add(new Object[]{"127.0.0.1",8888});
+			clients.add(new Object[]{"127.0.0.1",8889});
 			ExecutorService sendData = Executors.newSingleThreadExecutor();
 			sendData.execute(new Runnable() {
 				public void run() {
@@ -43,8 +48,10 @@ public class Server {
 									String context = Axiu.heroId + "/" + Axiu.state + "/" + Axiu.currentImage + "/"
 											+ Axiu.imageX + "/" + Axiu.imageY;
 									packet.setData(context.toString().getBytes());
-									packet.setSocketAddress(new InetSocketAddress(Axiu.ip, Axiu.port));
-									server.send(packet);
+									for(Object[] object:clients){
+										packet.setSocketAddress(new InetSocketAddress((String)object[0], (int)object[1]));
+										server.send(packet);
+									}
 								}
 								}
 							}
