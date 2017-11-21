@@ -16,10 +16,22 @@ public class Client {
 	public static ExecutorService receiveData;
 	public static DatagramSocket client;
 	public static DatagramPacket packet;
+	public static String clientIp;
+	public static int clientPort;
+	public static String serverIp;
+	public static int serverPort;
 	
 	public Client(){
 		try {
-			client=new DatagramSocket(8888);
+			boolean flag=true;
+			while(flag){
+				try{
+				client=new DatagramSocket(clientPort);
+				flag=false;
+				}catch(Exception e){
+					clientPort++;
+				}
+			}
 			packet=new DatagramPacket(new byte[1024], 1024);
 			receiveData=Executors.newSingleThreadExecutor();
 			receiveData.execute(new Runnable(){
