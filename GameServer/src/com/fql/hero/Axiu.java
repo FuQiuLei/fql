@@ -29,18 +29,60 @@ public class Axiu {
 		}
 	}
 
-	public static Object[][] walkRight = { new Object[] { "walkRight/0001.png", 25, 116 },
-			new Object[] { "walkRight/0002.png", 25, 116 }, new Object[] { "walkRight/0003.png", 25, 116 },
-			new Object[] { "walkRight/0004.png", 25, 116 }, new Object[] { "walkRight/0005.png", 25, 116 },
-			new Object[] { "walkRight/0006.png", 25, 116 }, new Object[] { "walkRight/0007.png", 25, 116 },
-			new Object[] { "walkRight/0008.png", 25, 116 }, new Object[] { "walkRight/0009.png", 25, 116 },
-			new Object[] { "walkRight/0010.png", 25, 116 }, new Object[] { "walkRight/0011.png", 25, 116 },
+	public static Object[][] walkRight = { 
+			new Object[] { "walkRight/0001.png", 25, 116 },
+			new Object[] { "walkRight/0002.png", 25, 116 }, 
+			new Object[] { "walkRight/0003.png", 25, 116 },
+			new Object[] { "walkRight/0004.png", 25, 116 }, 
+			new Object[] { "walkRight/0005.png", 25, 116 },
+			new Object[] { "walkRight/0006.png", 25, 116 }, 
+			new Object[] { "walkRight/0007.png", 25, 116 },
+			new Object[] { "walkRight/0008.png", 25, 116 }, 
+			new Object[] { "walkRight/0009.png", 25, 116 },
+			new Object[] { "walkRight/0010.png", 25, 116 }, 
+			new Object[] { "walkRight/0011.png", 25, 116 },
 			new Object[] { "walkRight/0012.png", 25, 116 } };
 
-	public static Object[][] stand = { new Object[] { "stand/0001.png", 25, 116 }, new Object[] { "stand/0002.png", 25, 116 },
-			new Object[] { "stand/0003.png", 25, 116 }, new Object[] { "stand/0004.png", 25, 116 },
-			new Object[] { "stand/0005.png", 25, 116 }, new Object[] { "stand/0006.png", 25, 116 },
-			new Object[] { "stand/0007.png", 25, 116 }, new Object[] { "stand/0008.png", 25, 116 },
-			new Object[] { "stand/0009.png", 25, 116 }, new Object[] { "stand/0010.png", 25, 116 } };
+	public static Object[][] stand = { 
+			new Object[] { "stand/0001.png", 25, 116 }, 
+			new Object[] { "stand/0002.png", 25, 116 },
+			new Object[] { "stand/0003.png", 25, 116 }, 
+			new Object[] { "stand/0004.png", 25, 116 },
+			new Object[] { "stand/0005.png", 25, 116 }, 
+			new Object[] { "stand/0006.png", 25, 116 },
+			new Object[] { "stand/0007.png", 25, 116 }, 
+			new Object[] { "stand/0008.png", 25, 116 },
+			new Object[] { "stand/0009.png", 25, 116 }, 
+			new Object[] { "stand/0010.png", 25, 116 } };
+	
+	public static Object[][] wuyue={
+			new Object[] { "attack-wuyue/0001.png", 0, 0 }, 
+			new Object[] { "attack-wuyue/0002.png", 0, 0 },
+			new Object[] { "attack-wuyue/0003.png", 0, 0 },
+			new Object[] { "attack-wuyue/0004.png", 0, 0 },
+			new Object[] { "attack-wuyue/0005.png", 0, 0 },
+			new Object[] { "attack-wuyue/0006.png", 0, 0 },
+			new Object[] { "attack-wuyue/0007.png", 0, 0 },
+			new Object[] { "attack-wuyue/0008.png", 0, 0 },
+			new Object[] { "attack-wuyue/0009.png", 0, 0 },
+			new Object[] { "attack-wuyue/0010.png", 0, 0 },
+			new Object[] { "attack-wuyue/0011.png", 0, 0 },
+			new Object[] { "attack-wuyue/0012.png", 0, 0 },
+			new Object[] { "attack-wuyue/0013.png", 0, 0 },
+			new Object[] { "attack-wuyue/0014.png", 0, 0 },
+			new Object[] { "attack-wuyue/0015.png", 0, 0 },
+			new Object[] { "attack-wuyue/0016.png", 0, 0 },
+			new Object[] { "attack-wuyue/0017.png", 0, 0 },
+			new Object[] { "attack-wuyue/0018.png", 0, 0 },
+			new Object[] { "attack-wuyue/0019.png", 0, 0 },
+			new Object[] { "attack-wuyue/0020.png", 0, 0 },
+			new Object[] { "attack-wuyue/0021.png", 0, 0 },
+			new Object[] { "attack-wuyue/0022.png", 0, 0 },
+			new Object[] { "attack-wuyue/0023.png", 0, 0 },
+			new Object[] { "attack-wuyue/0024.png", 0, 0 },
+			new Object[] { "attack-wuyue/0025.png", 0, 0 },
+			new Object[] { "attack-wuyue/0026.png", 0, 0 },
+			new Object[] { "attack-wuyue/0027.png", 0, 0 }
+	};
 
 }
