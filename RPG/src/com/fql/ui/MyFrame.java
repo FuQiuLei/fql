@@ -38,8 +38,9 @@ public class MyFrame extends JFrame{
 		addKeyListener(new KeyListener() {
 			@Override
 			public void keyReleased(KeyEvent e) {   
-				if(e.getKeyCode()==KeyEvent.VK_RIGHT){
-					pocket.setData((Client.heroId+"/"+Client.clientIp+"/"+Client.clientPort+"/"+KeyEvent.VK_RIGHT+"/keyReleased").getBytes());
+				if(e.getKeyCode()==KeyEvent.VK_RIGHT ||
+						e.getKeyCode()==KeyEvent.VK_SPACE){
+					pocket.setData((Client.heroId+"/"+Client.clientIp+"/"+Client.clientPort+"/"+e.getKeyCode()+"/keyReleased").getBytes());
 					pocket.setSocketAddress(new InetSocketAddress(Client.serverIp, Client.serverPort));
 					try {
 						Client.client.send(pocket);
@@ -51,8 +52,9 @@ public class MyFrame extends JFrame{
 			
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode()==KeyEvent.VK_RIGHT){
-					pocket.setData((Client.heroId+"/"+Client.clientIp+"/"+Client.clientPort+"/"+KeyEvent.VK_RIGHT+"/keyPressed").getBytes());
+				if(e.getKeyCode()==KeyEvent.VK_RIGHT ||
+						e.getKeyCode()==KeyEvent.VK_SPACE){
+					pocket.setData((Client.heroId+"/"+Client.clientIp+"/"+Client.clientPort+"/"+e.getKeyCode()+"/keyPressed").getBytes());
 					pocket.setSocketAddress(new InetSocketAddress(Client.serverIp, Client.serverPort));
 					try {
 						Client.client.send(pocket);

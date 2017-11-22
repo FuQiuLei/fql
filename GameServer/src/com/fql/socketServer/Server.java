@@ -100,16 +100,28 @@ public class Server {
 								if(result[4].equals("keyPressed")){
 									if(keyCode==KeyEvent.VK_RIGHT){
 										if(axiu.state==Constant.STAND){
-											axiu.state=Constant.WALK;
 											axiu.currentImage=0;
+											axiu.state=Constant.WALK;
 										}
 										if(axiu.state==Constant.STAND || axiu.state==Constant.WALK){
 											axiu.direction=Constant.RIGHT;
+										}
+									}else if(keyCode==KeyEvent.VK_SPACE){
+										if(axiu.state==Constant.STAND || axiu.state==Constant.WALK){
+											axiu.currentImage=0;
+											axiu.state=Constant.ATTACK;
 										}
 									}
 								}else{
 									if(keyCode==KeyEvent.VK_RIGHT){
 										if(axiu.state==Constant.WALK){
+											axiu.state=Constant.STAND;
+											axiu.currentImage=0;
+										}
+									}else if(keyCode==KeyEvent.VK_SPACE){
+										if(axiu.state==Constant.ATTACK || axiu.state==Constant.JUMP){
+											axiu.nextState=Constant.STAND;
+										}else if(axiu.state==Constant.WALK || axiu.state==Constant.WALK){
 											axiu.state=Constant.STAND;
 											axiu.currentImage=0;
 										}

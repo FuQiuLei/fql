@@ -58,6 +58,11 @@ public class Client {
 										Axiu.imageX=object.getIntValue("imageX");
 										Axiu.imageY=object.getIntValue("imageY");
 									}
+									else if(object.getString("state").equals(Constant.ATTACK+"")){
+										Axiu.image=ImageIO.read(new File(Axiu.imagePath+(String)Axiu.wuyue[object.getIntValue("currentImage")][0]));
+										Axiu.imageX=object.getIntValue("imageX");
+										Axiu.imageY=object.getIntValue("imageY");
+									}
 									continue;
 								}
 								case 2:{

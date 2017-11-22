@@ -44,6 +44,17 @@ public class Main {
 									Axiu.x+=3;
 									Axiu.imageX = Axiu.x - (int) Axiu.walkRight[Axiu.currentImage][1];
 									Axiu.imageY = Axiu.y - (int) Axiu.walkRight[Axiu.currentImage][2];
+								}else if(Axiu.state==Constant.ATTACK){
+									if (Axiu.currentImage >= 26) {
+										Axiu.currentImage = 0;
+										if(Axiu.nextState!=Axiu.state){
+											Axiu.state=Axiu.nextState;
+										}
+									}else{
+										Axiu.currentImage++;
+									}
+									Axiu.imageX = Axiu.x - (int) Axiu.wuyue[Axiu.currentImage][1];
+									Axiu.imageY = Axiu.y - (int) Axiu.wuyue[Axiu.currentImage][2];
 								}
 								continue;
 							}
