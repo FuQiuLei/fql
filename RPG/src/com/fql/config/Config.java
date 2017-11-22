@@ -6,8 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import com.fql.client.Client;
-import com.fql.hero.Axiu;
-import com.fql.person.BaShen;
+import com.fql.hero.*;
 import com.fql.ui.MyPanel;
 
 public class Config {

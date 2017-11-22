@@ -13,8 +13,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import com.fql.config.Config;
-import com.fql.hero.Axiu;
-import com.fql.person.BaShen;
+import com.fql.hero.*;
 
 public class MyPanel extends JPanel {
 

@@ -14,8 +14,7 @@ import java.util.Map;
 import javax.swing.JFrame;
 
 import com.fql.client.Client;
-import com.fql.hero.Axiu;
-import com.fql.person.BaShen;
+import com.fql.hero.*;
 
 public class MyFrame extends JFrame{
 	

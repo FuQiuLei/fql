@@ -11,8 +11,7 @@ import javax.imageio.ImageIO;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.fql.constant.Constant;
-import com.fql.hero.Axiu;
-import com.fql.person.BaShen;
+import com.fql.hero.*;
 
 public class Client {
 	
