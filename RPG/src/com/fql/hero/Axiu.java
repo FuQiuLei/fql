@@ -27,18 +27,32 @@ public class Axiu {
 		}
 	}
 	
-	public static Object[][] walkRight = { new Object[] { "walkRight/0001.png", 25, 116 },
-			new Object[] { "walkRight/0002.png", 25, 116 }, new Object[] { "walkRight/0003.png", 25, 116 },
-			new Object[] { "walkRight/0004.png", 25, 116 }, new Object[] { "walkRight/0005.png", 25, 116 },
-			new Object[] { "walkRight/0006.png", 25, 116 }, new Object[] { "walkRight/0007.png", 25, 116 },
-			new Object[] { "walkRight/0008.png", 25, 116 }, new Object[] { "walkRight/0009.png", 25, 116 },
-			new Object[] { "walkRight/0010.png", 25, 116 }, new Object[] { "walkRight/0011.png", 25, 116 },
-			new Object[] { "walkRight/0012.png", 25, 116 } };
+	public static Object[][] walkRight = { 
+			new Object[] { "walkRight/0001.png", 25, 116 },
+			new Object[] { "walkRight/0002.png", 25, 116 }, 
+			new Object[] { "walkRight/0003.png", 25, 116 },
+			new Object[] { "walkRight/0004.png", 25, 116 }, 
+			new Object[] { "walkRight/0005.png", 25, 116 },
+			new Object[] { "walkRight/0006.png", 25, 116 }, 
+			new Object[] { "walkRight/0007.png", 25, 116 },
+			new Object[] { "walkRight/0008.png", 25, 116 }, 
+			new Object[] { "walkRight/0009.png", 25, 116 },
+			new Object[] { "walkRight/0010.png", 25, 116 }, 
+			new Object[] { "walkRight/0011.png", 25, 116 },
+			new Object[] { "walkRight/0012.png", 25, 116 } 
+	};
 
-	public static Object[][] stand = { new Object[] { "stand/0001.png", 25, 116 }, new Object[] { "stand/0002.png", 25, 116 },
-			new Object[] { "stand/0003.png", 25, 116 }, new Object[] { "stand/0004.png", 25, 116 },
-			new Object[] { "stand/0005.png", 25, 116 }, new Object[] { "stand/0006.png", 25, 116 },
-			new Object[] { "stand/0007.png", 25, 116 }, new Object[] { "stand/0008.png", 25, 116 },
-			new Object[] { "stand/0009.png", 25, 116 }, new Object[] { "stand/0010.png", 25, 116 } };
+	public static Object[][] stand = { 
+			new Object[] { "stand/0001.png", 25, 116 }, 
+			new Object[] { "stand/0002.png", 25, 116 },
+			new Object[] { "stand/0003.png", 25, 116 }, 
+			new Object[] { "stand/0004.png", 25, 116 },
+			new Object[] { "stand/0005.png", 25, 116 }, 
+			new Object[] { "stand/0006.png", 25, 116 },
+			new Object[] { "stand/0007.png", 25, 116 }, 
+			new Object[] { "stand/0008.png", 25, 116 },
+			new Object[] { "stand/0009.png", 25, 116 }, 
+			new Object[] { "stand/0010.png", 25, 116 } 
+	};
 
 }

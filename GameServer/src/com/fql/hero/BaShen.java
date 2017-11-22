@@ -36,7 +36,8 @@ public class BaShen {
 			new Object[] { "walkRight/0009.png", 25, 116 },
 			new Object[] { "walkRight/0010.png", 25, 116 },
 			new Object[] { "walkRight/0011.png", 25, 116 },
-			new Object[] { "walkRight/0012.png", 25, 116 } };
+			new Object[] { "walkRight/0012.png", 25, 116 } 
+	};
 
 	public static Object[][] stand = { 
 			new Object[] { "stand/0001.png", 25, 116 },
@@ -48,7 +49,8 @@ public class BaShen {
 			new Object[] { "stand/0007.png", 25, 116 },
 			new Object[] { "stand/0008.png", 25, 116 },
 			new Object[] { "stand/0009.png", 25, 116 },
-			new Object[] { "stand/0010.png", 25, 116 } };
+			new Object[] { "stand/0010.png", 25, 116 } 
+	};
 
 
 }
