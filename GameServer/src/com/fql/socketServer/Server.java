@@ -48,26 +48,24 @@ public class Server {
 							while (iterator.hasNext()) {
 								int heroId = iterator.next().intValue();
 								switch (heroId) {
-								case 1: {
-									JSONObject object=new JSONObject();
-									object.put("heroId", Axiu.heroId);
-									object.put("state", Axiu.state);
-									object.put("currentImage", Axiu.currentImage);
-									object.put("imageX", Axiu.imageX);
-									object.put("imageY", Axiu.imageY);
-									array.add(object);
-									continue;
-								}
-								case 2: {
-									JSONObject object=new JSONObject();
-									object.put("heroId", BaShen.heroId);
-									object.put("state", BaShen.state);
-									object.put("currentImage", BaShen.currentImage);
-									object.put("imageX", BaShen.imageX);
-									object.put("imageY", BaShen.imageY);
-									array.add(object);
-									continue;
-								}
+									case 1: {
+										JSONObject object=new JSONObject();
+										object.put("heroId", Axiu.heroId);
+										object.put("currentImagePath", Axiu.currentImagePath);
+										object.put("imageX", Axiu.imageX);
+										object.put("imageY", Axiu.imageY);
+										array.add(object);
+										continue;
+									}
+									case 2: {
+										JSONObject object=new JSONObject();
+										object.put("heroId", BaShen.heroId);
+										object.put("currentImagePath", BaShen.currentImagePath);
+										object.put("imageX", BaShen.imageX);
+										object.put("imageY", BaShen.imageY);
+										array.add(object);
+										continue;
+									}
 								}
 							}
 							packet.setData(array.toJSONString().getBytes());
@@ -82,8 +80,8 @@ public class Server {
 					}
 				}
 			});
-			
-			
+
+
 			receiveData.execute(new Runnable(){
 				public void run() {
 					while(true){
@@ -94,71 +92,73 @@ public class Server {
 							String[] result=context.split("/");
 							int heroId=Integer.valueOf(result[0]).intValue();
 							switch(heroId){
-							case 1:{
-								Axiu axiu=(Axiu)Server.heros.get(herosId);
-								int keyCode=Integer.valueOf(result[3]).intValue();
-								if(result[4].equals("keyPressed")){
-									if(keyCode==KeyEvent.VK_RIGHT){
-										if(axiu.state==Constant.STAND){
-											axiu.currentImage=0;
-											axiu.state=Constant.WALK;
+								case 1:{
+									Axiu axiu=(Axiu)Server.heros.get(herosId);
+									int keyCode=Integer.valueOf(result[3]).intValue();
+									if(result[4].equals("keyPressed")){
+										if(keyCode==KeyEvent.VK_RIGHT){
+											if(axiu.state==Constant.STAND){
+												axiu.currentImage=0;
+												axiu.state=Constant.WALK;
+											}
+											if(axiu.state==Constant.STAND || axiu.state==Constant.WALK){
+												axiu.direction=Constant.RIGHT;
+											}
+										}else if(keyCode==KeyEvent.VK_SPACE){
+											if(axiu.state==Constant.STAND || axiu.state==Constant.WALK){
+												axiu.currentImage=0;
+												axiu.nextState=Constant.ATTACK;
+												axiu.state=Constant.ATTACK;
+											}
 										}
-										if(axiu.state==Constant.STAND || axiu.state==Constant.WALK){
-											axiu.direction=Constant.RIGHT;
-										}
-									}else if(keyCode==KeyEvent.VK_SPACE){
-										if(axiu.state==Constant.STAND || axiu.state==Constant.WALK){
-											axiu.currentImage=0;
-											axiu.state=Constant.ATTACK;
+									}else{
+										if(keyCode==KeyEvent.VK_RIGHT){
+											if(axiu.state==Constant.WALK){
+												axiu.state=Constant.STAND;
+												axiu.currentImage=0;
+											}
+										}else if(keyCode==KeyEvent.VK_SPACE){
+											if(axiu.state==Constant.ATTACK || axiu.state==Constant.JUMP){
+												axiu.nextState=Constant.STAND;
+											}else if(axiu.state==Constant.WALK || axiu.state==Constant.WALK){
+												axiu.nextState=Constant.STAND;
+												axiu.state=Constant.STAND;
+												axiu.currentImage=0;
+											}
 										}
 									}
-								}else{
-									if(keyCode==KeyEvent.VK_RIGHT){
-										if(axiu.state==Constant.WALK){
-											axiu.state=Constant.STAND;
-											axiu.currentImage=0;
-										}
-									}else if(keyCode==KeyEvent.VK_SPACE){
-										if(axiu.state==Constant.ATTACK || axiu.state==Constant.JUMP){
-											axiu.nextState=Constant.STAND;
-										}else if(axiu.state==Constant.WALK || axiu.state==Constant.WALK){
-											axiu.state=Constant.STAND;
-											axiu.currentImage=0;
-										}
-									}
+									continue;
 								}
-								continue;
-							}
-							case 2:{
-								BaShen baShen=(BaShen)Server.heros.get(herosId);
-								int keyCode=Integer.valueOf(result[3]).intValue();
-								if(result[4].equals("keyPressed")){
-									if(keyCode==KeyEvent.VK_RIGHT){
-										if(baShen.state==Constant.STAND){
-											baShen.state=Constant.WALK;
-											baShen.currentImage=0;
+								case 2:{
+									BaShen baShen=(BaShen)Server.heros.get(herosId);
+									int keyCode=Integer.valueOf(result[3]).intValue();
+									if(result[4].equals("keyPressed")){
+										if(keyCode==KeyEvent.VK_RIGHT){
+											if(baShen.state==Constant.STAND){
+												baShen.state=Constant.WALK;
+												baShen.currentImage=0;
+											}
+											if(baShen.state==Constant.STAND || baShen.state==Constant.WALK){
+												baShen.direction=Constant.RIGHT;
+											}
 										}
-										if(baShen.state==Constant.STAND || baShen.state==Constant.WALK){
-											baShen.direction=Constant.RIGHT;
+									}else{
+										if(keyCode==KeyEvent.VK_RIGHT){
+											if(baShen.state==Constant.WALK){
+												baShen.state=Constant.STAND;
+												baShen.currentImage=0;
+											}
 										}
 									}
-								}else{
-									if(keyCode==KeyEvent.VK_RIGHT){
-										if(baShen.state==Constant.WALK){
-											baShen.state=Constant.STAND;
-											baShen.currentImage=0;
-										}
-									}
+									continue;
 								}
-								continue;
-							}
 							}
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
 					}
 				}
-			}); 
+			});
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

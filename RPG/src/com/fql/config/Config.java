@@ -28,7 +28,7 @@ public class Config {
 			Client.serverIp=properties.getProperty("server.ip");
 		} catch (Exception e) {
 			e.printStackTrace();
-			//todo   ´´½¨ÌáÊ¾¿ò
+			//todo   åˆ›å»ºæç¤ºæ¡†
 		}
 	}
 }

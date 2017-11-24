@@ -17,7 +17,7 @@ import com.fql.hero.*;
 
 public class MyPanel extends JPanel {
 
-	
+
 	public static MyPanel myPanel;
 	public static int backgrounds=8;
 	public static int currentBackground=0;
@@ -30,14 +30,14 @@ public class MyPanel extends JPanel {
 		currentBackgroundImage=new BufferedImage(1000,390,BufferedImage.TYPE_INT_RGB);
 		g2=currentBackgroundImage.createGraphics();
 	}
-	
+
 	@Override
 	public void paint(final Graphics g) {
 		Config.updateUI.execute(new Runnable(){
 			public void run() {
 				while(true){
 					try {
-						//»æÖÆ±³¾°Í¼Æ¬
+						//ç»˜åˆ¶èƒŒæ™¯å›¾ç‰‡
 						BufferedImage image=ImageIO.read(new File(backgroundImagePath+(String)background[currentBackground][0]));
 						if(MyPanel.currentBackground<7){
 							MyPanel.currentBackground++;
@@ -45,19 +45,19 @@ public class MyPanel extends JPanel {
 							MyPanel.currentBackground=0;
 						}
 						g2.drawImage(image, 0, 0,MyPanel.myPanel);
-						//»æÖÆÓ¢ÐÛÍ¼Æ¬
+						//ç»˜åˆ¶è‹±é›„å›¾ç‰‡
 						Iterator<Integer> iterator=MyFrame.heros.keySet().iterator();
 						while(iterator.hasNext()){
 							int heroId=iterator.next().intValue();
 							switch(heroId){
-							case 1:{
-								BufferedImage hero=Axiu.image;
-								g2.drawImage(hero, Axiu.imageX, Axiu.imageY,MyPanel.myPanel);
-							}
-							case 2:{
-								BufferedImage hero=BaShen.image;
-								g2.drawImage(hero, BaShen.imageX, BaShen.imageY,MyPanel.myPanel);
-							}
+								case 1:{
+									BufferedImage hero=Axiu.image;
+									g2.drawImage(hero, Axiu.imageX, Axiu.imageY,MyPanel.myPanel);
+								}
+								case 2:{
+									BufferedImage hero=BaShen.image;
+									g2.drawImage(hero, BaShen.imageX, BaShen.imageY,MyPanel.myPanel);
+								}
 							}
 						}
 						g.drawImage(currentBackgroundImage, 0, 0,MyPanel.myPanel);
@@ -70,7 +70,7 @@ public class MyPanel extends JPanel {
 			}
 		});
 	}
-	
+
 	public Object[][] background={
 			new Object[]{"background0001.bmp",0,0},
 			new Object[]{"background0002.bmp",0,0},

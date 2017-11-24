@@ -17,12 +17,12 @@ import com.fql.client.Client;
 import com.fql.hero.*;
 
 public class MyFrame extends JFrame{
-	
+
 	public static Map<Integer,Object> heros=new HashMap<>();
 	public static Axiu axiu=new Axiu();
 	public static BaShen baShen=new BaShen();
 	public static MyPanel myPanel=new MyPanel();
-	public static DatagramPacket pocket=new DatagramPacket(new byte[50], 50);
+	public static DatagramPacket pocket=new DatagramPacket(new byte[1024], 1024);
 	public MyFrame(){
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +37,7 @@ public class MyFrame extends JFrame{
 		Client client=new Client();
 		addKeyListener(new KeyListener() {
 			@Override
-			public void keyReleased(KeyEvent e) {   
+			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_RIGHT ||
 						e.getKeyCode()==KeyEvent.VK_SPACE){
 					pocket.setData((Client.heroId+"/"+Client.clientIp+"/"+Client.clientPort+"/"+e.getKeyCode()+"/keyReleased").getBytes());
@@ -49,7 +49,7 @@ public class MyFrame extends JFrame{
 					}
 				}
 			}
-			
+
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_RIGHT ||
@@ -63,7 +63,7 @@ public class MyFrame extends JFrame{
 					}
 				}
 			}
-			
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 			}

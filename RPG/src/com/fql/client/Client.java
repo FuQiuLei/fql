@@ -14,7 +14,7 @@ import com.fql.constant.Constant;
 import com.fql.hero.*;
 
 public class Client {
-	
+
 	public static ExecutorService receiveData;
 	public static DatagramSocket client;
 	public static DatagramPacket packet;
@@ -23,14 +23,14 @@ public class Client {
 	public static int clientPort;
 	public static String serverIp;
 	public static int serverPort;
-	
+
 	public Client(){
 		try {
 			boolean flag=true;
 			while(flag){
 				try{
-				client=new DatagramSocket(clientPort);
-				flag=false;
+					client=new DatagramSocket(clientPort);
+					flag=false;
 				}catch(Exception e){
 					clientPort++;
 				}
@@ -44,40 +44,24 @@ public class Client {
 							client.receive(packet);
 							byte[] b=packet.getData();
 							String context=new String(b,0,packet.getLength());
+//							System.out.println(context);
 							JSONArray array=JSONArray.parseArray(context);
 							for(int i=0;i<array.size();i++){
 								JSONObject object=(JSONObject)array.get(i);
 								switch (object.getIntValue("heroId")){
-								case 1:{
-									if(object.getString("state").equals(Constant.STAND+"")){
-										Axiu.image=ImageIO.read(new File(Axiu.imagePath+(String)Axiu.stand[object.getIntValue("currentImage")][0]));
+									case 1:{
+										Axiu.image=ImageIO.read(new File(Axiu.imagePath+object.getString("currentImagePath")));
 										Axiu.imageX=object.getIntValue("imageX");
 										Axiu.imageY=object.getIntValue("imageY");
-									}else if(object.getString("state").equals(Constant.WALK+"")){
-										Axiu.image=ImageIO.read(new File(Axiu.imagePath+(String)Axiu.walkRight[object.getIntValue("currentImage")][0]));
-										Axiu.imageX=object.getIntValue("imageX");
-										Axiu.imageY=object.getIntValue("imageY");
+										continue;
 									}
-									else if(object.getString("state").equals(Constant.ATTACK+"")){
-										Axiu.image=ImageIO.read(new File(Axiu.imagePath+(String)Axiu.wuyue[object.getIntValue("currentImage")][0]));
-										Axiu.imageX=object.getIntValue("imageX");
-										Axiu.imageY=object.getIntValue("imageY");
-									}
-									continue;
-								}
-								case 2:{
-									if(object.getString("state").equals(Constant.STAND+"")){
-										BaShen.image=ImageIO.read(new File(BaShen.imagePath+(String)BaShen.stand[object.getIntValue("currentImage")][0]));
+									case 2:{
+										BaShen.image=ImageIO.read(new File(BaShen.imagePath+object.getString("currentImagePath")));
 										BaShen.imageX=object.getIntValue("imageX");
 										BaShen.imageY=object.getIntValue("imageY");
-									}else if(object.getString("state").equals(Constant.WALK+"")){
-										BaShen.image=ImageIO.read(new File(BaShen.imagePath+(String)BaShen.walkRight[object.getIntValue("currentImage")][0]));
-										BaShen.imageX=object.getIntValue("imageX");
-										BaShen.imageY=object.getIntValue("imageY");
+										continue;
 									}
-									continue;
 								}
-							}
 							}
 						}catch(Exception e){
 							e.printStackTrace();
