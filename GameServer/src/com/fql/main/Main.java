@@ -2,12 +2,15 @@ package com.fql.main;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.File;
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,9 +29,10 @@ public class Main {
 		System.out.println("服务器");
 		JFrame jFrame=new JFrame();
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jFrame.setBounds(800, 200, 100, 100);
+		jFrame.setBounds(800, 200, 300, 100);
 		jFrame.setVisible(true);
 		jFrame.setResizable(false);
+		jFrame.setTitle("憨巴日-服务器");
 		JPanel jPanel=new JPanel();
 		jPanel.setLayout(null);
 		jPanel.setVisible(true);

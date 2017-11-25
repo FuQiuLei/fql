@@ -3,6 +3,7 @@ package com.fql.ui;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetSocketAddress;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import com.fql.client.Client;
@@ -23,6 +25,8 @@ public class MyFrame extends JFrame{
 	public static BaShen baShen=new BaShen();
 	public static MyPanel myPanel=new MyPanel();
 	public static DatagramPacket pocket=new DatagramPacket(new byte[1024], 1024);
+	public static String frameTitleImagePath;
+	public static String frameTitle;
 	public MyFrame(){
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,6 +34,12 @@ public class MyFrame extends JFrame{
 		this.setVisible(true);
 		this.setBackground(Color.BLACK);
 		this.setLayout(null);
+		this.setTitle(MyFrame.frameTitle);
+		try {
+			this.setIconImage(ImageIO.read(new File(frameTitleImagePath)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		heros.put(1,axiu);
 		heros.put(2,baShen);
 		this.add(myPanel);

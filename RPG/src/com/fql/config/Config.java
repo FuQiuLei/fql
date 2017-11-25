@@ -1,5 +1,6 @@
 package com.fql.config;
 
+import java.io.File;
 import java.io.FileReader;
 import java.util.Properties;
 import java.util.concurrent.ExecutorService;
@@ -7,6 +8,7 @@ import java.util.concurrent.Executors;
 
 import com.fql.client.Client;
 import com.fql.hero.*;
+import com.fql.ui.MyFrame;
 import com.fql.ui.MyPanel;
 
 public class Config {
@@ -18,6 +20,9 @@ public class Config {
 		Properties properties = new Properties();
 		try {
 			properties.load(new FileReader(Config.class.getResource("config.properties").getFile()));
+			File file=new File(MyFrame.class.getProtectionDomain().getCodeSource().getLocation().toString());
+			MyFrame.frameTitleImagePath=(file.getParent()+properties.getProperty("frameTitleImagePath")).substring(6);
+			MyFrame.frameTitle=properties.getProperty("frameTitle");
 			MyPanel.backgroundImagePath=properties.getProperty("backgroundImagePath");
 			Axiu.imagePath=properties.getProperty("AxiuImagePath");
 			BaShen.imagePath=properties.getProperty("BaShenImagePath");
