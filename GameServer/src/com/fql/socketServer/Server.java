@@ -36,8 +36,8 @@ public class Server {
 	public Server() {
 		try {
 			server = new DatagramSocket(9999);
-			clients.add(new Object[]{"192.168.1.104",8888});
-			clients.add(new Object[]{"192.168.1.107",8888});
+			clients.add(new Object[]{"127.0.0.1",8888});
+			clients.add(new Object[]{"127.0.0.1",8889});
 
 			//给客户端发送消息
 			sendData.execute(new Runnable() {

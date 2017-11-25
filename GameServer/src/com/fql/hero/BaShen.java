@@ -106,6 +106,10 @@ public class BaShen {
 			imageX = x - (int) walkRight[currentImage][1];
 			imageY = y - (int) walkRight[currentImage][2];
 			currentImagePath=(String)walkRight[currentImage][0];
+		}else if(state==Constant.ATTACK){
+			imageX = x - (int) wuyue[currentImage][1];
+			imageY = y - (int) wuyue[currentImage][2];
+			currentImagePath=(String)wuyue[currentImage][0];
 		}
 	}
 
