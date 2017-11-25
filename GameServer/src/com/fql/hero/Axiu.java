@@ -1,5 +1,6 @@
 package com.fql.hero;
 
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
@@ -32,6 +33,74 @@ public class Axiu {
 		}
 	}
 
+	//实时更新人物状态
+	public static void updateHero(){
+		if (state == Constant.STAND) {
+			if (currentImage >= 9) {
+				currentImage = 0;
+			}else{
+				currentImage++;
+			}
+			setImage();
+		}else if(state==Constant.WALK){
+			if (currentImage >= 11) {
+				currentImage = 0;
+			}else{
+				currentImage++;
+			}
+			x+=3;
+			setImage();
+		}else if(state==Constant.ATTACK){
+			if (currentImage >= 25) {
+				currentImage = 0;
+				if(nextState!=state){
+					state=nextState;
+				}
+			}else{
+				currentImage++;
+			}
+			setImage();
+		}
+	}
+
+	//根据按下的键改变任务状态
+	public static void updateForPressed(int keyCode){
+		if(keyCode== KeyEvent.VK_RIGHT){
+			if(state==Constant.STAND){
+				currentImage=0;
+				state=Constant.WALK;
+			}
+			if(state==Constant.STAND || state==Constant.WALK){
+				direction=Constant.RIGHT;
+			}
+		}else if(keyCode==KeyEvent.VK_SPACE){
+			if(state==Constant.STAND || state==Constant.WALK){
+				currentImage=0;
+				nextState=Constant.ATTACK;
+				state=Constant.ATTACK;
+			}
+		}
+	}
+
+	//根据按下的键改变任务状态
+	public static void updateForReleased(int keyCode){
+		if(keyCode==KeyEvent.VK_RIGHT){
+			if(state==Constant.WALK){
+				state=Constant.STAND;
+				currentImage=0;
+			}
+		}else if(keyCode==KeyEvent.VK_SPACE){
+			if(state==Constant.ATTACK || state==Constant.JUMP){
+				nextState=Constant.STAND;
+			}else if(state==Constant.WALK || state==Constant.WALK){
+				nextState=Constant.STAND;
+				state=Constant.STAND;
+				currentImage=0;
+			}
+		}
+	}
+
+	//根据状态变化图片
 	public static void setImage(){
 		if(state==Constant.STAND){
 			imageX = x - (int) stand[currentImage][1];

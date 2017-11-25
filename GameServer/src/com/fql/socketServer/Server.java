@@ -24,6 +24,7 @@ public class Server {
 
 	public static ExecutorService sendData = Executors.newSingleThreadExecutor();
 	public static ExecutorService receiveData = Executors.newSingleThreadExecutor();
+	public static ExecutorService updateHero = Executors.newSingleThreadExecutor();
 	public static DatagramSocket server;
 	public static final DatagramPacket packet = new DatagramPacket(new byte[1024], 1024);
 	public static final DatagramPacket receivepacket = new DatagramPacket(new byte[1024], 1024);
@@ -37,7 +38,8 @@ public class Server {
 			server = new DatagramSocket(9999);
 			clients.add(new Object[]{"192.168.1.104",8888});
 			clients.add(new Object[]{"192.168.1.107",8888});
-			ExecutorService sendData = Executors.newSingleThreadExecutor();
+
+			//给客户端发送消息
 			sendData.execute(new Runnable() {
 				public void run() {
 					while (true) {
@@ -81,7 +83,7 @@ public class Server {
 				}
 			});
 
-
+			//接受客户端发送的按键信息
 			receiveData.execute(new Runnable(){
 				public void run() {
 					while(true){
@@ -93,66 +95,52 @@ public class Server {
 							int heroId=Integer.valueOf(result[0]).intValue();
 							switch(heroId){
 								case 1:{
-									Axiu axiu=(Axiu)Server.heros.get(herosId);
 									int keyCode=Integer.valueOf(result[3]).intValue();
 									if(result[4].equals("keyPressed")){
-										if(keyCode==KeyEvent.VK_RIGHT){
-											if(axiu.state==Constant.STAND){
-												axiu.currentImage=0;
-												axiu.state=Constant.WALK;
-											}
-											if(axiu.state==Constant.STAND || axiu.state==Constant.WALK){
-												axiu.direction=Constant.RIGHT;
-											}
-										}else if(keyCode==KeyEvent.VK_SPACE){
-											if(axiu.state==Constant.STAND || axiu.state==Constant.WALK){
-												axiu.currentImage=0;
-												axiu.nextState=Constant.ATTACK;
-												axiu.state=Constant.ATTACK;
-											}
-										}
+										Axiu.updateForPressed(keyCode);
 									}else{
-										if(keyCode==KeyEvent.VK_RIGHT){
-											if(axiu.state==Constant.WALK){
-												axiu.state=Constant.STAND;
-												axiu.currentImage=0;
-											}
-										}else if(keyCode==KeyEvent.VK_SPACE){
-											if(axiu.state==Constant.ATTACK || axiu.state==Constant.JUMP){
-												axiu.nextState=Constant.STAND;
-											}else if(axiu.state==Constant.WALK || axiu.state==Constant.WALK){
-												axiu.nextState=Constant.STAND;
-												axiu.state=Constant.STAND;
-												axiu.currentImage=0;
-											}
-										}
+										Axiu.updateForReleased(keyCode);
 									}
 									continue;
 								}
 								case 2:{
-									BaShen baShen=(BaShen)Server.heros.get(herosId);
 									int keyCode=Integer.valueOf(result[3]).intValue();
 									if(result[4].equals("keyPressed")){
-										if(keyCode==KeyEvent.VK_RIGHT){
-											if(baShen.state==Constant.STAND){
-												baShen.state=Constant.WALK;
-												baShen.currentImage=0;
-											}
-											if(baShen.state==Constant.STAND || baShen.state==Constant.WALK){
-												baShen.direction=Constant.RIGHT;
-											}
-										}
+										BaShen.updateForPressed(keyCode);
 									}else{
-										if(keyCode==KeyEvent.VK_RIGHT){
-											if(baShen.state==Constant.WALK){
-												baShen.state=Constant.STAND;
-												baShen.currentImage=0;
-											}
-										}
+										BaShen.updateForReleased(keyCode);
 									}
 									continue;
 								}
 							}
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			});
+
+			//实时更新人物状态
+			updateHero.execute(new Runnable() {
+				public void run() {
+					while (true) {
+						try {
+							Set<Integer> herosId = Server.heros.keySet();
+							Iterator<Integer> iterator = herosId.iterator();
+							while (iterator.hasNext()) {
+								int heroId = iterator.next().intValue();
+								switch (heroId) {
+									case 1: {
+										Axiu.updateHero();
+										continue;
+									}
+									case 2: {
+										BaShen.updateHero();
+										continue;
+									}
+								}
+							}
+							Thread.currentThread().sleep(50);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
